@@ -60,13 +60,18 @@ services:
       test: [ "CMD", "redis-cli","ping" ]
 
   elasticsearch:
-    image: elasticsearch:7.17.9
+    image: elasticsearch:7.8.1
     container_name: elasticsearch
     environment:
+      - node.name=elasticsearch
       - "ES_JAVA_OPTS=-Xms512m -Xmx1024m"
       - transport.host=0.0.0.0
       - discovery.type=single-node
       - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     volumes:
       - esdata-conductor:/usr/share/elasticsearch/data
     networks:

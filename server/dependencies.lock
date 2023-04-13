@@ -18,7 +18,7 @@
             "project": true
         },
         "com.netflix.conductor:conductor-es7-persistence": {
-            "locked": "3.13.3"
+            "locked": "3.13.5"
         },
         "com.netflix.conductor:conductor-grpc-server": {
             "project": true
@@ -200,7 +200,7 @@
             "project": true
         },
         "com.netflix.conductor:conductor-es7-persistence": {
-            "locked": "3.13.3"
+            "locked": "3.13.5"
         },
         "com.netflix.conductor:conductor-grpc": {
             "firstLevelTransitive": [
@@ -613,7 +613,7 @@
             "project": true
         },
         "com.netflix.conductor:conductor-es7-persistence": {
-            "locked": "3.13.3"
+            "locked": "3.13.5"
         },
         "com.netflix.conductor:conductor-grpc": {
             "firstLevelTransitive": [
@@ -927,7 +927,7 @@
             "project": true
         },
         "com.netflix.conductor:conductor-es7-persistence": {
-            "locked": "3.13.3"
+            "locked": "3.13.5"
         },
         "com.netflix.conductor:conductor-grpc-server": {
             "project": true
@@ -1127,7 +1127,7 @@
             "project": true
         },
         "com.netflix.conductor:conductor-es7-persistence": {
-            "locked": "3.13.3"
+            "locked": "3.13.5"
         },
         "com.netflix.conductor:conductor-grpc": {
             "firstLevelTransitive": [

@@ -63,7 +63,7 @@ services:
       test: [ "CMD", "redis-cli","ping" ]
 
   elasticsearch:
-    image: elasticsearch:7.17.9
+    image: elasticsearch:7.8.1
     container_name: elasticsearch
     environment:
       - node.name=elasticsearch
