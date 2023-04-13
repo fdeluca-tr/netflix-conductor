@@ -3,7 +3,7 @@ version: '2.3'
 services:
   conductor-server:
     environment:
-      - CONFIG_PROP=config-local.properties
+      - CONFIG_PROP=config.properties
     image: conductor:server
     container_name: conductor-server
     build:
@@ -21,10 +21,13 @@ services:
     links:
       - elasticsearch:es
       - redis:rs
+      - dynomite:dyno1
     depends_on:
       elasticsearch:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      dynomite:
         condition: service_healthy
     logging:
       driver: "json-file"
@@ -63,10 +66,15 @@ services:
     image: elasticsearch:7.17.9
     container_name: elasticsearch
     environment:
+      - node.name=elasticsearch
       - "ES_JAVA_OPTS=-Xms512m -Xmx1024m"
       - transport.host=0.0.0.0
       - discovery.type=single-node
       - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     volumes:
       - esdata-conductor:/usr/share/elasticsearch/data
     networks:
@@ -76,6 +84,23 @@ services:
       - 9300:9300
     healthcheck:
       test: wget http://localhost:9200/ -O /dev/null
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "3"
+
+  dynomite:
+    image: v1r3n/dynomite
+    networks:
+      - internal
+    ports:
+      - 8102:8102
+    healthcheck:
+      test: timeout 5 bash -c 'cat < /dev/null > /dev/tcp/localhost/8102'
       interval: 5s
       timeout: 5s
       retries: 12
